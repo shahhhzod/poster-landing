@@ -7,7 +7,7 @@ import { ForWho } from './components/ForWho'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { HowItWorks } from './components/HowItWorks'
-import { PosterQR } from './components/PosterQR'
+import { PosterFeatures } from './components/PosterFeatures'
 import { Pricing } from './components/Pricing'
 import { Training } from './components/Training'
 import { CTASection } from './components/CTASection'
@@ -24,7 +24,7 @@ function App() {
       <Training />
       <Pricing />
       <ForWho />
-      <PosterQR />
+      <PosterFeatures />
       <FAQ />
       <CTASection />
       <Contact />
