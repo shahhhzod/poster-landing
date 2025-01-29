@@ -113,7 +113,7 @@ export function PosterFeatures() {
   const currentFeature = allFeatures[currentIndex];
 
   return (
-    <section className="section overflow-hidden">
+    <section className="section overflow-hidden pt-24 pb-12 md:pt-32 md:pb-0">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <AnimatePresence mode="wait">

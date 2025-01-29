@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { CirclePlay } from "lucide-react";
+import { CirclePlay, ChevronLeft, ChevronRight } from "lucide-react";
 import ReactPlayer from 'react-player';
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -28,28 +28,76 @@ export function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const INTERVAL = 7000;
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [autoPlayTimer, setAutoPlayTimer] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-      setProgress(0);
-    }, INTERVAL);
-
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 0;
-        return prev + (100 / (INTERVAL / 100));
-      });
-    }, 100);
-
+    let interval: NodeJS.Timeout | undefined;
+    let progressInterval: NodeJS.Timeout | undefined;
+    
+    if (autoPlay) {
+      // Основной интервал для смены слайдов
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setProgress(0);
+      }, INTERVAL);
+  
+      // Интервал для прогресс-бара
+      progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) return 0;
+          return prev + (100 / (INTERVAL / 100));
+        });
+      }, 100);
+    }
+  
+    // Очистка интервалов
     return () => {
-      clearInterval(interval);
-      clearInterval(progressInterval);
+      if (interval) clearInterval(interval);
+      if (progressInterval) clearInterval(progressInterval);
     };
-  }, []);
+  }, [autoPlay, images.length, INTERVAL]); 
+
+ // Обновите функции handlePrevious и handleNext
+const handlePrevious = () => {
+  // Очищаем предыдущий таймер если он есть
+  if (autoPlayTimer) clearTimeout(autoPlayTimer);
+  
+  setAutoPlay(false);
+  setProgress(0);
+  setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  
+  // Устанавливаем новый таймер для возобновления автопроигрывания
+  const timer = setTimeout(() => {
+    setAutoPlay(true);
+  }, 3000); // Возобновляем через 3 секунды после последнего ручного переключения
+  
+  setAutoPlayTimer(timer);
+};
+
+const handleNext = () => {
+  if (autoPlayTimer) clearTimeout(autoPlayTimer);
+  
+  setAutoPlay(false);
+  setProgress(0);
+  setCurrentIndex((prev) => (prev + 1) % images.length);
+  
+  const timer = setTimeout(() => {
+    setAutoPlay(true);
+  }, 3000);
+  
+  setAutoPlayTimer(timer);
+};
+
+// Добавьте очистку таймера при размонтировании компонента
+useEffect(() => {
+  return () => {
+    if (autoPlayTimer) clearTimeout(autoPlayTimer);
+  };
+}, [autoPlayTimer]);
 
   return (
-    <section className="section pt-24 pb-8 md:pt-32 md:pb-0">
+    <section className="section pt-24 pb-12 md:pt-32 md:pb-0">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
@@ -118,38 +166,52 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <div className="order-1 lg:order-2 relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.5 }}
-                className="mt-8 lg:mt-0 rounded-lg overflow-hidden shadow-xl"
-              >
-                <img
-                  src={images[currentIndex].src}
-                  alt={images[currentIndex].alt}
-                  className="w-full h-auto"
-                />
-              </motion.div>
-            </AnimatePresence>
+                  <div className="order-1 lg:order-2 relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5 }}
+              className="mt-8 lg:mt-0 rounded-lg overflow-hidden shadow-xl"
+            >
+              <img
+                src={images[currentIndex].src}
+                alt={images[currentIndex].alt}
+                className="w-full h-auto"
+              />
+            </motion.div>
+          </AnimatePresence>
 
-            {/* Progress indicator */}
-            <div className="absolute -bottom-8 left-0 right-0 flex gap-4 justify-center">
-              {images.map((_, index) => (
-                <div key={index} className="h-1 w-16 bg-gray-200 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-primary rounded-full"
-                    initial={{ width: "0%" }}
-                    animate={{ width: index === currentIndex ? `${progress}%` : "0%" }}
-                    transition={{ duration: 0.1 }}
-                  />
-                </div>
-              ))}
-            </div>
+          {/* Кнопки навигации */}
+          <button
+            onClick={handlePrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Progress indicator остается без изменений */}
+          <div className="absolute -bottom-8 left-0 right-0 flex gap-4 justify-center">
+            {images.map((_, index) => (
+              <div key={index} className="h-1 w-16 bg-gray-200 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-primary rounded-full"
+                  initial={{ width: "0%" }}
+                  animate={{ width: index === currentIndex ? `${progress}%` : "0%" }}
+                  transition={{ duration: 0.1 }}
+                />
+              </div>
+            ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

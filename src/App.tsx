@@ -18,13 +18,13 @@ function App() {
     <>
       <Header />
       <Hero />
+      <PosterFeatures />
       <Features />
       <HowItWorks />
       <Benefits />
       <Training />
       <Pricing />
       <ForWho />
-      <PosterFeatures />
       <FAQ />
       <CTASection />
       <Contact />

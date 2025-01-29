@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
-import { VideoIcon, PhoneCall, UserCog, ArrowRight } from "lucide-react";
+import { VideoIcon, PhoneCall, UserCog, ArrowRight, HeadphonesIcon, MessageSquareText, Rocket } from "lucide-react";
 import { DemoForm } from "./ModernModal";
 
 const services = [
@@ -18,7 +18,22 @@ const services = [
    icon: <UserCog className="w-10 h-10 text-primary" />, 
    title: "Консультации",
    description: "Персональная помощь в настройке"
- }
+ },
+  {
+    icon: <HeadphonesIcon className="w-10 h-10 text-primary" />,
+    title: "Профессиональная поддержка",
+    description: "Опытные специалисты готовы помочь с любыми вопросами"
+  },
+  {
+    icon: <MessageSquareText className="w-10 h-10 text-primary" />,
+    title: "Мультиканальность",
+    description: "Поддержка через чат, email и телефон"
+  },
+  {
+    icon: <Rocket className="w-10 h-10 text-primary" />,
+    title: "Всегда бесплатно",
+    description: "Неограниченное количество обращений без дополнительной платы"
+  }
 ];
 
 export function Training() {
@@ -58,10 +73,10 @@ export function Training() {
   trigger={
       <Button 
         size="lg"
-        className="bg-primary text-primary-foreground hover:bg-primary/90 group w-full sm:w-auto"
+        className="bg-primary text-primary-foreground hover:bg-primary/90 group w-full sm:w-auto text-sm sm:text-lg py-6 px-8"
       >
         Записаться на демонстрацию
-        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
       </Button>
         }
 />
