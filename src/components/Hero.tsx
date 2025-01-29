@@ -30,6 +30,33 @@ export function Hero() {
   const INTERVAL = 7000;
   const [autoPlay, setAutoPlay] = useState(true);
   const [autoPlayTimer, setAutoPlayTimer] = useState<NodeJS.Timeout | null>(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const imagePromises = images.map((image) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = image.src;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      });
+  
+      try {
+        await Promise.all(imagePromises);
+        setImagesLoaded(true);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+      }
+    };
+  
+    loadImages();
+  }, []);
+
+  const ImageSkeleton = () => (
+    <div className="w-full h-full animate-pulse bg-gray-200 rounded-lg aspect-[16/9]" />
+  );
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -166,52 +193,73 @@ useEffect(() => {
             </div>
           </motion.div>
 
-                  <div className="order-1 lg:order-2 relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.5 }}
-              className="mt-8 lg:mt-0 rounded-lg overflow-hidden shadow-xl"
-            >
-              <img
-                src={images[currentIndex].src}
-                alt={images[currentIndex].alt}
-                className="w-full h-auto"
-              />
-            </motion.div>
-          </AnimatePresence>
+          <div className="order-1 lg:order-2 relative">
+  <AnimatePresence mode="wait">
+    {!imagesLoaded ? (
+      <motion.div
+        key="skeleton"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="mt-8 lg:mt-0 rounded-lg overflow-hidden shadow-xl"
+      >
+        <ImageSkeleton />
+      </motion.div>
+    ) : (
+      <motion.div
+        key={currentIndex}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        transition={{ duration: 0.5 }}
+        className="mt-8 lg:mt-0 rounded-lg overflow-hidden shadow-xl"
+      >
+        <img
+          src={images[currentIndex].src}
+          alt={images[currentIndex].alt}
+          className="w-full h-auto"
+          loading="eager"
+          fetchPriority="high"
+          style={{ opacity: imagesLoaded ? 1 : 0 }}
+        />
+      </motion.div>
+    )}
+  </AnimatePresence>
 
-          {/* Кнопки навигации */}
-          <button
-            onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+  {/* Кнопки навигации показываем только когда изображения загружены */}
+  {imagesLoaded && (
+    <>
+      <button
+        onClick={handlePrevious}
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+    </>
+  )}
 
-          {/* Progress indicator остается без изменений */}
-          <div className="absolute -bottom-8 left-0 right-0 flex gap-4 justify-center">
-            {images.map((_, index) => (
-              <div key={index} className="h-1 w-16 bg-gray-200 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-primary rounded-full"
-                  initial={{ width: "0%" }}
-                  animate={{ width: index === currentIndex ? `${progress}%` : "0%" }}
-                  transition={{ duration: 0.1 }}
-                />
-              </div>
-            ))}
-          </div>
+  {/* Progress indicator показываем только когда изображения загружены */}
+  {imagesLoaded && (
+    <div className="absolute -bottom-8 left-0 right-0 flex gap-4 justify-center">
+      {images.map((_, index) => (
+        <div key={index} className="h-1 w-16 bg-gray-200 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-primary rounded-full"
+            initial={{ width: "0%" }}
+            animate={{ width: index === currentIndex ? `${progress}%` : "0%" }}
+            transition={{ duration: 0.1 }}
+          />
         </div>
+      ))}
+    </div>
+  )}
+</div>
         </div>
       </div>
     </section>
