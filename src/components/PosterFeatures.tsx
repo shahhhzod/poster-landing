@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowRight, ArrowDownRight } from "lucide-react";
+import { ArrowRight, ArrowDownRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import posterQR from '@/assets/poster-qr.png';
 import posterBOSS from '@/assets/poster-boss.png';
 import posterMobile from '@/assets/poster-mobile.png';
 import posterKitchen from '@/assets/poster-kitchen.png';
+
 
 const allFeatures = [
   {
@@ -90,32 +91,103 @@ export function PosterFeatures() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const INTERVAL = 7000; // 7 секунд на каждый блок
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [autoPlayTimer, setAutoPlayTimer] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % allFeatures.length);
-      setProgress(0);
-    }, INTERVAL);
-
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 0;
-        return prev + (100 / (INTERVAL / 100));
-      });
-    }, 100);
-
+    let interval: NodeJS.Timeout | undefined;
+    let progressInterval: NodeJS.Timeout | undefined;
+  
+    if (autoPlay) {
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % allFeatures.length);
+        setProgress(0);
+      }, INTERVAL);
+  
+      progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) return 0;
+          return prev + (100 / (INTERVAL / 100));
+        });
+      }, 100);
+    }
+  
     return () => {
-      clearInterval(interval);
-      clearInterval(progressInterval);
+      if (interval) clearInterval(interval);
+      if (progressInterval) clearInterval(progressInterval);
     };
-  }, []);
+  }, [autoPlay]);
+
+  const handlePrevious = () => {
+    if (autoPlayTimer) clearTimeout(autoPlayTimer);
+    
+    setAutoPlay(false);
+    setProgress(0);
+    setCurrentIndex((prev) => (prev - 1 + allFeatures.length) % allFeatures.length);
+    
+    const timer = setTimeout(() => {
+      setAutoPlay(true);
+    }, 3000);
+    
+    setAutoPlayTimer(timer);
+  };
+
+  const handleNext = () => {
+    if (autoPlayTimer) clearTimeout(autoPlayTimer);
+    
+    setAutoPlay(false);
+    setProgress(0);
+    setCurrentIndex((prev) => (prev + 1) % allFeatures.length);
+    
+    const timer = setTimeout(() => {
+      setAutoPlay(true);
+    }, 3000);
+    
+    setAutoPlayTimer(timer);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (autoPlayTimer) clearTimeout(autoPlayTimer);
+    };
+  }, [autoPlayTimer]);
+
+  const handleIndicatorClick = (index: number) => {
+    if (autoPlayTimer) clearTimeout(autoPlayTimer);
+    setAutoPlay(false);
+    setProgress(0);
+    setCurrentIndex(index);
+    
+    const timer = setTimeout(() => {
+      setAutoPlay(true);
+    }, 3000);
+    
+    setAutoPlayTimer(timer);
+  };
 
   const currentFeature = allFeatures[currentIndex];
 
   return (
     <section className="section overflow-hidden pt-24 pb-12 md:pt-32 md:pb-0">
-      <div className="container">
+      <div className="container relative">
+        {/* 
+        <button
+            onClick={handlePrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors z-20"
+            aria-label="Предыдущий слайд"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors z-20"
+            aria-label="Следующий слайд"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button> */}
+                               
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -170,19 +242,23 @@ export function PosterFeatures() {
           </motion.div>
         </div>
 
-        {/* Progress indicator */}
-        <div className="mt-12 flex gap-4 justify-center">
-          {allFeatures.map((_, index) => (
-            <div key={index} className="relative h-1 w-24 bg-gray-200 rounded-full overflow-hidden">
-              <motion.div
-                className="absolute inset-0 bg-primary rounded-full"
-                initial={{ width: "0%" }}
-                animate={{ width: index === currentIndex ? `${progress}%` : "0%" }}
-                transition={{ duration: 0.1 }}
-              />
-            </div>
-          ))}
-        </div>
+      {/* Progress indicator */}
+      <div className="mt-12 flex gap-4 justify-center">
+        {allFeatures.map((feature, index) => (
+          <button
+            key={index}
+            onClick={() => handleIndicatorClick(index)}
+            className="relative h-1 w-24 bg-gray-200 rounded-full overflow-hidden hover:bg-gray-300 transition-colors focus:outline-none"
+          >
+            <motion.div
+              className="absolute inset-0 bg-primary rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: index === currentIndex ? `${progress}%` : "0%" }}
+              transition={{ duration: 0.1 }}
+            />
+          </button>
+        ))}
+      </div>
       </div>
     </section>
   );

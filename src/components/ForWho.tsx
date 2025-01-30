@@ -1,39 +1,50 @@
 // components/ForWho.tsx
 import { motion } from "framer-motion";
-import { Store, Coffee, Martini, Pizza, ShoppingBag, } from "lucide-react";
+import { Store, Coffee, Martini, Beer, Cake, ShoppingBag, Building, Sandwich } from "lucide-react";
 
 const businesses = [
- {
-   icon: <Store className="w-8 h-8" />,
-   title: "Магазины",
-   description: "Автоматизация торговых точек любого размера"
- },
- {
-   icon: <Coffee className="w-8 h-8" />,
-   title: "Кофейни",
-   description: "Управление заказами и программы лояльности"
- },
- {
-   icon: <Martini className="w-8 h-8" />,
-   title: "Рестораны",
-   description: "Полный контроль кухни и зала"
- },
- {
-   icon: <Pizza className="w-8 h-8" />,
-   title: "Фастфуд",
-   description: "Быстрое обслуживание и доставка"
- },
- {
-   icon: <ShoppingBag className="w-8 h-8" />,
-   title: "Супермаркеты",
-   description: "Складской учет и аналитика продаж"
- },
- {
-   icon: <Pizza className="w-8 h-8" />,
-   title: "Пиццерии",
-   description: "Онлайн-заказы и маршрутизация доставки"
- }
+  {
+    icon: <Martini className="w-8 h-8" />,
+    title: "Ресторан",
+    description: "Автоматизируйте управление кухней, залом и заказами."
+  },
+  {
+    icon: <Store className="w-8 h-8" />,
+    title: "Кафе",
+    description: "Контролируйте заказы, персонал и продажи в кафе."
+  },
+  {
+    icon: <Coffee className="w-8 h-8" />,
+    title: "Кофейня",
+    description: "Управляйте продажами напитков и программами лояльности."
+  },
+  {
+    icon: <Beer className="w-8 h-8" />,
+    title: "Бар",
+    description: "Следите за остатками алкоголя и контролируйте кассу."
+  },
+  {
+    icon: <Cake className="w-8 h-8" />,
+    title: "Пекарня",
+    description: "Управляйте производством, заказами и продажами."
+  },
+  {
+    icon: <ShoppingBag className="w-8 h-8" />,
+    title: "Магазин",
+    description: "Контролируйте ассортимент, продажи и аналитику."
+  },
+  {
+    icon: <Building className="w-8 h-8" />,
+    title: "Франшиза",
+    description: "Управляйте сетью точек в одном месте."
+  },
+  {
+    icon: <Sandwich className="w-8 h-8" />,
+    title: "Фастфуд",
+    description: "Оптимизируйте кассовые операции и скорость обслуживания."
+  }
 ];
+
 
 export function ForWho() {
  return (

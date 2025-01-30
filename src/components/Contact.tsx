@@ -13,6 +13,9 @@ export function Contact() {
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
       setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
     };
 
  return (

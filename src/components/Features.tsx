@@ -29,11 +29,6 @@ const features = [
    description: "Простой учет товаров и материалов"
  },
  {
-   icon: <CalendarRange className="w-6 h-6" />,
-   title: "Бронирование столиков",
-   description: "Управление резервами и рассадкой"
- },
- {
    icon: <Truck className="w-6 h-6" />,
    title: "Управление доставкой",
    description: "Организация службы доставки"

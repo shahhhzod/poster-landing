@@ -11,6 +11,7 @@ const navItems = [
  { title: "Возможности", href: "#features" },
  { title: "Тарифы", href: "#pricing" },
  { title: "Для кого?", href: "#for-who" },
+ { title: "Оборудование", href: "#equipment" },
  { title: "Поддержка", href: "#support" },
  { title: "Контакты", href: "#contacts" },
 ];
@@ -47,9 +48,9 @@ export function Header() {
 
        <div className="ml-auto hidden md:flex items-center gap-4">
          <ThemeToggle />
-         <Button variant="outline" size="sm">
+         {/* <Button variant="outline" size="sm">
            Вход
-         </Button>
+         </Button> */}
          <Button 
            className="bg-primary text-primary-foreground hover:bg-primary/90" 
            size="sm"
@@ -84,9 +85,9 @@ export function Header() {
        </a>
      ))}
      <div className="flex flex-col gap-2 mt-4">
-       <Button variant="outline" size="sm">
+       {/* <Button variant="outline" size="sm">
          Вход
-       </Button>
+       </Button> */}
        <Button 
          className="bg-primary text-primary-foreground hover:bg-primary/90"
          size="sm"

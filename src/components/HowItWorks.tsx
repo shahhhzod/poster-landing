@@ -55,7 +55,7 @@ export function HowItWorks() {
            className="aspect-video bg-background rounded-lg overflow-hidden shadow-lg"
          >
            <ReactPlayer
-             url="https://youtu.be/kRuqyhz7b_o?si=2QLZACCT8m6RbfP_"
+             url="https://youtu.be/Y4wEsb2cNaQ"
              width="100%"
              height="100%"
              controls={true}

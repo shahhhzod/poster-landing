@@ -12,6 +12,8 @@ import { Pricing } from './components/Pricing'
 import { Training } from './components/Training'
 import { CTASection } from './components/CTASection'
 import { Contact } from './components/Contact'
+import Equipment from './components/Equipment'
+import TrustedBy from './components/TrustedBy'
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       <Training />
       <Pricing />
       <ForWho />
+      <Equipment />
+      <TrustedBy />
       <FAQ />
       <CTASection />
       <Contact />

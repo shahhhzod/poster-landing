@@ -12,10 +12,10 @@ export function CTASection() {
          whileInView={{ opacity: 1, y: 0 }}
          className="max-w-3xl mx-auto text-center"
        >
-         <h2 className="text-2xl md:text-4xl font-bold mb-6">
+         <h2 className="section-title mb-6">
            Начните автоматизировать свой бизнес уже сегодня
          </h2>
-         <p className="text-base md:text-xl text-muted-foreground mb-8">
+         <p className="section-text mb-8">
            Первые 15 дней бесплатно. Подключайтесь к более чем 50,000 довольных клиентов
          </p>
          

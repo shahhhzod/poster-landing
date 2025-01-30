@@ -13,28 +13,25 @@ const links = [
  {
    title: "Продукт",
    items: [
-     { name: "Возможности", href: "#features" },
+     { name: "Тур по продукту", href: "https://joinposter.com/tour/terminal" },
      { name: "Тарифы", href: "#pricing" },
-     { name: "Интеграции", href: "#integrations" },
-     { name: "Обновления", href: "#updates" }
+     { name: "Интеграции", href: "https://joinposter.com/applications" },
    ]
  },
  {
    title: "Компания",
    items: [
-     { name: "О нас", href: "#about" },
-     { name: "Клиенты", href: "#clients" },
+     { name: "О нас", href: "https://joinposter.com/about" },
      { name: "Контакты", href: "#contacts" },
-     { name: "Блог", href: "#blog" }
+     { name: "Блог", href: "https://joinposter.com/blog" }
    ]
  },
  {
-   title: "Поддержка",
+   title: "Обучение",
    items: [
-     { name: "Центр помощи", href: "#help" },
-     { name: "База знаний", href: "#knowledge" },
-     { name: "Документация API", href: "#api" },
-     { name: "Статус системы", href: "#status" }
+     { name: "База знаний", href: "https://support.joinposter.com/ru/?_gl=1*1w8emsp*_gcl_au*ODY2MjEyMTI2LjE3Mzc3NDAyODQ." },
+     { name: "Документация API", target: "_blank", rel: "noopener noreferrer", href: "https://dev.joinposter.com/docs/v3/start/index" },
+     { name: "Полезные материалы", href: "https://joinposter.com/useful-materials" }
    ]
  }
 ];
@@ -74,12 +71,14 @@ export function Footer() {
              <ul className="space-y-3">
                {group.items.map((item) => (
                  <li key={item.name}>
-                   <a
+                     <a
                      href={item.href}
+                     target={item.href.startsWith('#') ? undefined : "_blank"}
+                     rel={item.href.startsWith('#') ? undefined : "noopener noreferrer"}
                      className="text-muted-foreground hover:text-foreground transition-colors"
-                   >
+                     >
                      {item.name}
-                   </a>
+                     </a>
                  </li>
                ))}
              </ul>
@@ -91,14 +90,11 @@ export function Footer() {
          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
            <p>© 2025 Poster. Все права защищены</p>
            <div className="flex flex-wrap justify-center gap-6">
-             <a href="#" className="hover:text-foreground transition-colors">
-               Условия использования
+             <a href="https://joinposter.com/terms" target="_blank" className="hover:text-foreground transition-colors">
+               Соглашение
              </a>
-             <a href="#" className="hover:text-foreground transition-colors">
+             <a href="https://joinposter.com/privacy" target="_blank" className="hover:text-foreground transition-colors">
                Конфиденциальность
-             </a>
-             <a href="#" className="hover:text-foreground transition-colors">
-               Правовая информация
              </a>
            </div>
          </div>
