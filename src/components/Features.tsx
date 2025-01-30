@@ -1,5 +1,5 @@
 // src/components/Features.tsx
-import { Monitor, Menu, Package, FileSpreadsheet, ClipboardCheck, CalendarRange, Truck } from "lucide-react";
+import { Monitor, Menu, Package, FileSpreadsheet, ClipboardCheck, Truck } from "lucide-react";
 import { motion } from "framer-motion";
 
 const features = [

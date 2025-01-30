@@ -51,7 +51,7 @@ export function TrustedBy() {
             Нам доверяют
           </p>
           <h2 className="section-text">
-            Более 1000+ компаний используют наши решения
+            Более 100+ компаний используют наши решения
           </h2>
         </motion.div>
 

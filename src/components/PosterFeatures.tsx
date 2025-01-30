@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowRight, ArrowDownRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowDownRight, } from "lucide-react";
 import { useState, useEffect } from "react";
 import posterQR from '@/assets/poster-qr.png';
 import posterBOSS from '@/assets/poster-boss.png';
@@ -118,34 +118,6 @@ export function PosterFeatures() {
     };
   }, [autoPlay]);
 
-  const handlePrevious = () => {
-    if (autoPlayTimer) clearTimeout(autoPlayTimer);
-    
-    setAutoPlay(false);
-    setProgress(0);
-    setCurrentIndex((prev) => (prev - 1 + allFeatures.length) % allFeatures.length);
-    
-    const timer = setTimeout(() => {
-      setAutoPlay(true);
-    }, 3000);
-    
-    setAutoPlayTimer(timer);
-  };
-
-  const handleNext = () => {
-    if (autoPlayTimer) clearTimeout(autoPlayTimer);
-    
-    setAutoPlay(false);
-    setProgress(0);
-    setCurrentIndex((prev) => (prev + 1) % allFeatures.length);
-    
-    const timer = setTimeout(() => {
-      setAutoPlay(true);
-    }, 3000);
-    
-    setAutoPlayTimer(timer);
-  };
-
   useEffect(() => {
     return () => {
       if (autoPlayTimer) clearTimeout(autoPlayTimer);
@@ -170,21 +142,7 @@ export function PosterFeatures() {
   return (
     <section className="section overflow-hidden pt-24 pb-12 md:pt-32 md:pb-0">
       <div className="container relative">
-        {/* 
-        <button
-            onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors z-20"
-            aria-label="Предыдущий слайд"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-colors z-20"
-            aria-label="Следующий слайд"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button> */}
+
                                
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           
@@ -244,7 +202,7 @@ export function PosterFeatures() {
 
       {/* Progress indicator */}
       <div className="mt-12 flex gap-4 justify-center">
-        {allFeatures.map((feature, index) => (
+        {allFeatures.map((_, index) => (
           <button
             key={index}
             onClick={() => handleIndicatorClick(index)}

@@ -6,9 +6,7 @@ import {
   Printer, 
   AppleIcon, 
   MonitorIcon,
-  InfoIcon,
   ExternalLinkIcon,
-  CheckCircle2 
 } from 'lucide-react';
 
 const requirements = [
