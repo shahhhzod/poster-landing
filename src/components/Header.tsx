@@ -48,12 +48,10 @@ export function Header() {
 
        <div className="ml-auto hidden md:flex items-center gap-4">
          <ThemeToggle />
-         {/* <Button variant="outline" size="sm">
-           Вход
-         </Button> */}
          <Button 
            className="bg-primary text-primary-foreground hover:bg-primary/90" 
            size="sm"
+           onClick={() => window.open('https://joinposter.com/signup?ref=partner-davlatos', '_blank')}
          >
            Попробовать бесплатно
          </Button>
@@ -88,12 +86,13 @@ export function Header() {
        {/* <Button variant="outline" size="sm">
          Вход
        </Button> */}
-       <Button 
-         className="bg-primary text-primary-foreground hover:bg-primary/90"
-         size="sm"
-       >
-         Попробовать бесплатно
-       </Button>
+      <Button 
+        className="bg-primary text-primary-foreground hover:bg-primary/90"
+        size="sm"
+        onClick={() => window.open('https://joinposter.com/signup?ref=partner-davlatos', '_blank')}
+      >
+        Попробовать бесплатно
+      </Button>
      </div>
    </nav>
  </SheetContent>

@@ -139,7 +139,11 @@ export function Pricing() {
                </p>
              </div>
 
-             <Button className="w-full mb-6">Выбрать тариф</Button>
+             <Button asChild className="w-full mb-6">
+               <a href="https://joinposter.com/signup?ref=partner-davlatos" target="_blank" rel="noopener noreferrer">
+               Выбрать тариф
+               </a>
+             </Button>
 
              <ul className="space-y-3">
                {plan.features.map((feature, i) => (

@@ -34,9 +34,11 @@ export function CTASection() {
            </div>
          </div>
 
-         <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+         <a href="https://joinposter.com/signup?ref=partner-davlatos" target="_blank" rel="noopener noreferrer">
+           <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
            Попробовать бесплатно
-         </Button>
+           </Button>
+         </a>
        </motion.div>
      </div>
    </section>

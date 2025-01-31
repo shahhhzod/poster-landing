@@ -3,35 +3,35 @@ import placeholder from '@/assets/placeholder_200x150.svg';
 
 const companies = [
   {
-    name: "Company 1",
+    name: "28monkeys",
     logo: placeholder,
   },
   {
-    name: "Company 2",
+    name: "Bundes bar",
     logo: placeholder,
   },
   {
-    name: "Company 3",
+    name: "Bro burger",
     logo: placeholder,
   },
   {
-    name: "Company 4",
+    name: "Romashka",
     logo: placeholder,
   },
   {
-    name: "Company 5",
+    name: "Point",
     logo: placeholder,
   },
   {
-    name: "Company 6",
+    name: "The Ritz",
     logo: placeholder,
   },
   {
-    name: "Company 7",
+    name: "Dona",
     logo: placeholder,
   },
   {
-    name: "Company 8",
+    name: "Wallstreet Khujand",
     logo: placeholder,
   }
 ];
@@ -69,20 +69,23 @@ export function TrustedBy() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ 
-                duration: 0.5,
-                delay: index * 0.1,
-                type: "spring",
-                stiffness: 100
+          duration: 0.5,
+          delay: index * 0.1,
+          type: "spring",
+          stiffness: 100
               }}
-              className="group flex items-center justify-center"
+              className="group flex flex-col items-center justify-center gap-4"
             >
               <div className="relative w-32 h-20">
-                <img
-                  src={company.logo}
-                  alt={`${company.name} logo`}
-                  className="w-full h-full object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                />
+          <img
+            src={company.logo}
+            alt={`${company.name} logo`}
+            className="w-full h-full object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+          />
               </div>
+              <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+          {company.name}
+              </p>
             </motion.div>
           ))}
         </motion.div>

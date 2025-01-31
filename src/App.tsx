@@ -15,6 +15,7 @@ import { Contact } from './components/Contact'
 import Equipment from './components/Equipment'
 import TrustedBy from './components/TrustedBy'
 
+
 function App() {
   return (
     <>

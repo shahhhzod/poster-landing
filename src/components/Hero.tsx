@@ -158,12 +158,19 @@ export function Hero() {
               ))}
             </motion.p>
             <div className="flex flex-wrap gap-4">
-              <Button 
+                <Button 
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-              >
-                Попробовать бесплатно
-              </Button>
+                asChild
+                >
+                <a 
+                  href="https://joinposter.com/signup?ref=partner-davlatos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Попробовать бесплатно
+                </a>
+                </Button>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button size="lg" variant="outline" className="group w-full sm:w-auto">
