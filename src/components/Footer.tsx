@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const socials = [
-  { icon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />, href: "#", label: "Youtube" },
-  { icon: <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />, href: "#", label: "Instagram" },
+  { icon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />, href: "https://www.youtube.com/@PosterPosAsia", label: "Youtube" },
+  { icon: <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />, href: "https://www.instagram.com/postertajikistan/", label: "Instagram" },
   { icon: <FontAwesomeIcon icon={faTelegram} className="h-5 w-5" />, href: "#", label: "Telegram" },
   { icon: <FontAwesomeIcon icon={faWhatsapp} className="h-5 w-5" />, href: "#", label: "Whatsapp" },
 ];
@@ -57,7 +57,12 @@ export function Footer() {
                  className="hover:bg-primary/10 hover:text-primary"
                  asChild
                >
-                 <a href={social.href} aria-label={social.label}>
+                 <a 
+                   href={social.href} 
+                   aria-label={social.label} 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                 >
                    {social.icon}
                  </a>
                </Button>

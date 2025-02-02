@@ -1,38 +1,46 @@
 import { motion } from "framer-motion";
 import placeholder from '@/assets/placeholder_200x150.svg';
+import monkeys from '@/assets/logo/28monkeys.png';
+import bundes from '@/assets/logo/bundes.png';
+import broburger from '@/assets/logo/bro-burger.jpg';
+import point from '@/assets/logo/point.jpg';
+import wallstreet from '@/assets/logo/wall-street.jpg';
+import dona from '@/assets/logo/dona.jpg';
+import romashka from '@/assets/logo/romashka.png';
+import theritz from '@/assets/logo/the_ritz.png';
 
 const companies = [
   {
     name: "28monkeys",
-    logo: placeholder,
+    logo: monkeys,
   },
   {
     name: "Bundes bar",
-    logo: placeholder,
+    logo: bundes,
   },
   {
     name: "Bro burger",
-    logo: placeholder,
+    logo: broburger,
   },
   {
     name: "Romashka",
-    logo: placeholder,
+    logo: romashka,
   },
   {
     name: "Point",
-    logo: placeholder,
+    logo: point,
   },
   {
     name: "The Ritz",
-    logo: placeholder,
+    logo: theritz,
   },
   {
     name: "Dona",
-    logo: placeholder,
+    logo: dona,
   },
   {
     name: "Wallstreet Khujand",
-    logo: placeholder,
+    logo: wallstreet,
   }
 ];
 

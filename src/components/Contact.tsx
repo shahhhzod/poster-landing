@@ -97,8 +97,8 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-medium">Телефон</p>
-                  <a href="tel:+992985000000" className="text-muted-foreground hover:text-primary">
-                    +992 (985) 00-00-00
+                  <a href="tel:+992900908008" className="text-muted-foreground hover:text-primary">
+                    +992 (900) 90-80-08
                   </a>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              {/* <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                   <MapPin className="w-6 h-6" />
                 </div>
@@ -125,7 +125,7 @@ export function Contact() {
                     Душанбе, ул. Примерная, 123
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
