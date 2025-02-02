@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import placeholder from '@/assets/placeholder_200x150.svg';
 import monkeys from '@/assets/logo/28monkeys.png';
 import bundes from '@/assets/logo/bundes.png';
 import broburger from '@/assets/logo/bro-burger.jpg';

@@ -1,6 +1,6 @@
 // components/Contact.tsx
 import { useState, useRef } from 'react';
-import { Mail, Phone, MapPin, CheckCircle, Loader2 } from "lucide-react";
+import { Mail, Phone, CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
