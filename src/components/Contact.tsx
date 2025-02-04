@@ -109,8 +109,8 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-medium">Email</p>
-                  <a href="mailto:info@poster.tj" className="text-muted-foreground hover:text-primary">
-                    info@poster.tj
+                  <a href="mailto:posterpostajikistan@gmail.com" className="text-muted-foreground hover:text-primary">
+                   posterpostajikistan@gmail.com
                   </a>
                 </div>
               </div>

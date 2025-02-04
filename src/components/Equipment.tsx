@@ -86,7 +86,7 @@ const MotionCard = motion(Card);
           ))}
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -107,7 +107,7 @@ const MotionCard = motion(Card);
               <ExternalLinkIcon className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </Button>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
       initial={{ opacity: 0 }}
