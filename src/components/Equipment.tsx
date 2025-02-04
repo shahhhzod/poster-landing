@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { 
   Tablet, 
   Printer, 
   AppleIcon, 
   MonitorIcon,
-  ExternalLinkIcon,
 } from 'lucide-react';
 
 const requirements = [
