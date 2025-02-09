@@ -26,7 +26,8 @@ const allFeatures = [
         description: "Актуальные данные без ручного обновления"
       }
     ],
-    image: posterQR
+    image: posterQR,
+    href: "https://joinposter.com/tour/addons/qr-menu"
   },
   {
     title: "Poster BOSS",
@@ -45,7 +46,8 @@ const allFeatures = [
         description: "Отчеты по продажам, персоналу и финансам"
       }
     ],
-    image: posterBOSS
+    image: posterBOSS,
+    href: "https://joinposter.com/tour/addons/poster-boss"
   },
   {
     title: "Мобильный официант",
@@ -64,7 +66,8 @@ const allFeatures = [
         description: "Оптимизируйте процесс: заказы мгновенно попадают на кухню."
       }
     ],    
-    image: posterMobile
+    image: posterMobile,
+    href: "https://joinposter.com/tour/mobile-pos"
   },
   {
     title: "Kitchen Kit",
@@ -83,7 +86,8 @@ const allFeatures = [
         description: "Оперативные оповещения для своевременной подачи блюд."
       }
     ],    
-    image: posterKitchen 
+    image: posterKitchen,
+    href: "https://joinposter.com/applications/kitchen-kit"
   }
 ];
 
@@ -179,10 +183,12 @@ export function PosterFeatures() {
                 ))}
               </div>
 
-              <Button className="group">
-                Узнать больше
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                <Button asChild className="group">
+                <a href={currentFeature.href} target="_blank" rel="noopener noreferrer">
+                  Узнать больше
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                </Button>
             </motion.div>
           </AnimatePresence>
 

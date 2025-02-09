@@ -146,7 +146,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="text-muted-foreground text-lg md:text-xl text-left mb-8"
             >
-              {Array.from("От POS-терминала до финансового учета — всё, что нужно вашему бизнесу в одной системе").map((char, index) => (
+                {Array.from("От POS-терминала до финансового учета — всё, что нужно вашему бизнесу в Таджикистане в одной системе").map((char, index) => (
                 <motion.span
                   key={index}
                   initial={{ opacity: 0 }}
@@ -155,7 +155,7 @@ export function Hero() {
                 >
                   {char}
                 </motion.span>
-              ))}
+                ))}
             </motion.p>
             <div className="flex flex-wrap gap-4">
                 <Button 

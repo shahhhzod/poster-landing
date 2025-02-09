@@ -46,7 +46,7 @@ export function Footer() {
              <span className="text-2xl font-bold">Poster</span>
            </a>
            <p className="text-muted-foreground max-w-sm">
-             Комплексное решение для автоматизации вашего бизнеса
+             Комплексное решение для автоматизации вашего бизнеса в Таджикистане. 
            </p>
            <div className="flex gap-3">
              {socials.map((social) => (

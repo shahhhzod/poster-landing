@@ -7,47 +7,73 @@ import {
   MonitorIcon,
 } from 'lucide-react';
 
+import posterpos from '@/assets/poster-pos.jpg';
+
 const requirements = [
   {
     system: 'MacOS',
     icon: AppleIcon,
     specs: ['8 ГБ ОЗУ, M1', 'macOS X 13+'],
+    downloadLink: 'https://s3.eu-central-1.amazonaws.com/poster-desktop-update/Poster-4.0.4.dmg',
   },
   {
     system: 'iOS',
     icon: AppleIcon,
-    specs: ['iPad Air 4, iPad 10.2 и другие модели с iOS 15+'],
+    specs: ['iPad Air 4', 'iPad 10.2 и с iOS 15+'],
+    downloadLink: 'https://apps.apple.com/us/app/poster/id691098784',
   },
   {
     system: 'Android',
     icon: Tablet,
     specs: ['4 Гб ОЗУ', 'Android 11+'],
+    downloadLink: 'https://play.google.com/store/apps/details?id=com.joinposter&hl=en',
   },
   {
     system: 'Windows',
     icon: MonitorIcon,
     specs: ['8 Гб ОЗУ', 'Windows 10+'],
+    downloadLink: 'https://s3.eu-central-1.amazonaws.com/poster-desktop-update/Poster+Setup+4.0.4.exe',
   },
 ];
+
 
 export function Equipment() {
 const MotionCard = motion(Card);
   return (
     <section id='equipment' className="py-24">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="section-title">Оборудование для работы с Poster</h2>
-          <p className="section-text mx-auto">
-            Poster — облачная POS-система. Для её работы нужен:
-          </p>
-        </motion.div>
+      <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-left"
+          >
+            <h2 className="section-title mb-2">Оборудование для работы с Poster</h2>
+            <p className="section-text text-muted-foreground">
+              Poster — облачная POS-система. Для её работы нужен:
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="aspect-video rounded-lg overflow-hidden shadow-xl">
+              <img 
+                src={posterpos}
+                alt="POS оборудование Poster" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full z-0" />
+          </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
+
           {[
             {
               title: "Терминал",
@@ -159,6 +185,20 @@ const MotionCard = motion(Card);
                     </motion.li>
                   ))}
                 </ul>
+
+            {req.downloadLink && (
+                <div className="pt-6 mt-auto">
+                  <a
+                    href={req.downloadLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center px-4 py-2.5 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02]"
+                  >
+                    Скачать 
+                  </a>
+                </div>
+            )}
+            
               </CardContent>
             </MotionCard>
           </motion.div>
