@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import { VideoIcon, PhoneCall, UserCog, ArrowRight, HeadphonesIcon, MessageSquareText, Rocket } from "lucide-react";
 import { DemoForm } from "./ModernModal";
+import ReactGA from "react-ga4";
 
 const services = [
  {
@@ -35,6 +36,15 @@ const services = [
     description: "Неограниченное количество обращений бесплатно"
   }
 ];
+
+
+const handleClick = () => {
+  ReactGA.event({
+    category: "Button",
+    action: "Click",
+    label: "Записаться на демонстрацию",
+  });
+};
 
 export function Training() {
  return (
@@ -74,6 +84,7 @@ export function Training() {
       <Button 
         size="lg"
         className="bg-primary text-primary-foreground hover:bg-primary/90 group w-full sm:w-auto text-sm sm:text-lg py-6 px-8"
+        onClick={handleClick}
       >
         Записаться на демонстрацию
         <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

@@ -8,6 +8,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import posterMain from '@/assets/poster-main.png';
 import posterdemo2 from '@/assets/poster-demo-2.png';
 import posterdemo3 from '@/assets/poster-demo-3.png';
+import ReactGA from "react-ga4";
 
 const images = [
   {
@@ -158,19 +159,26 @@ export function Hero() {
                 ))}
             </motion.p>
             <div className="flex flex-wrap gap-4">
-                <Button 
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-                asChild
-                >
-                <a 
-                  href="https://joinposter.com/signup?ref=partner-davlatos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Попробовать бесплатно
-                </a>
-                </Button>
+            <Button 
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
+              asChild
+            >
+              <a 
+                href="https://joinposter.com/signup?ref=partner-davlatos"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  ReactGA.event({
+                    category: "Button",
+                    action: "Click",
+                    label: "Попробовать бесплатно - Главный экран",
+                  });
+                }}
+              >
+                Попробовать бесплатно
+              </a>
+            </Button>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button size="lg" variant="outline" className="group w-full sm:w-auto">

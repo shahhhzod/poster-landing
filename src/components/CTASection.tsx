@@ -2,6 +2,20 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { CheckCircle2 } from "lucide-react";
+import ReactGA from "react-ga4";
+
+const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  event.preventDefault(); 
+  ReactGA.event({
+    category: "Button",
+    action: "Click",
+    label: "Попробовать беслпатно - CTA Секция",
+  });
+
+  setTimeout(() => {
+    window.open("https://joinposter.com/signup?ref=partner-davlatos", "_blank");
+  }, 300); 
+};
 
 export function CTASection() {
  return (
@@ -34,11 +48,16 @@ export function CTASection() {
            </div>
          </div>
 
-         <a href="https://joinposter.com/signup?ref=partner-davlatos" target="_blank" rel="noopener noreferrer">
-           <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-           Попробовать бесплатно
-           </Button>
-         </a>
+                  <a 
+            href="https://joinposter.com/signup?ref=partner-davlatos" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={handleClick}
+          >
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              Попробовать бесплатно
+            </Button>
+          </a>
        </motion.div>
      </div>
    </section>

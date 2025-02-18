@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { ThemeToggle } from './theme-toggle';
 import { scrollToSection } from '@/utils/smoothScroll';
+import ReactGA from "react-ga4";
 
 const navItems = [
  { title: "Возможности", href: "#features" },
@@ -51,7 +52,16 @@ export function Header() {
          <Button 
            className="bg-primary text-primary-foreground hover:bg-primary/90" 
            size="sm"
-           onClick={() => window.open('https://joinposter.com/signup?ref=partner-davlatos', '_blank')}
+           
+           onClick={() => {
+            ReactGA.event({
+              category: "Button",
+              action: "Click",
+              label: "Попробовать бесплатно - Header десктоп",
+            });
+    
+            window.open('https://joinposter.com/signup?ref=partner-davlatos', '_blank');
+          }}
          >
            Попробовать бесплатно
          </Button>
@@ -86,13 +96,21 @@ export function Header() {
        {/* <Button variant="outline" size="sm">
          Вход
        </Button> */}
-      <Button 
-        className="bg-primary text-primary-foreground hover:bg-primary/90"
-        size="sm"
-        onClick={() => window.open('https://joinposter.com/signup?ref=partner-davlatos', '_blank')}
-      >
-        Попробовать бесплатно
-      </Button>
+     <Button 
+      className="bg-primary text-primary-foreground hover:bg-primary/90"
+      size="sm"
+      onClick={() => {
+        ReactGA.event({
+          category: "Button",
+          action: "Click",
+          label: "Попробовать бесплатно - Header мобильный",
+        });
+
+        window.open('https://joinposter.com/signup?ref=partner-davlatos', '_blank');
+      }}
+    >
+      Попробовать бесплатно
+    </Button>
      </div>
    </nav>
  </SheetContent>
